@@ -18,4 +18,5 @@ RUN mkdir -p /opt/rs97apps/
 COPY --from=builder /opt/buildroot-2018.02.9/output/host/* /opt/rs97tools/
 ENV PATH /opt/rs97tools/mipsel-buildroot-linux-uclibc/sysroot/usr/bin:$PATH
 ENV PATH /opt/rs97tools/bin:$PATH
+RUN ln -s /usr/lib/x86_64-linux-gnu/libmpfr.so.6 /usr/lib/x86_64-linux-gnu/libmpfr.so.4
 WORKDIR /opt/rs97apps/
