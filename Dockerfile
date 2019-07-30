@@ -11,11 +11,9 @@ WORKDIR /opt/buildroot-2018.02.9
 COPY config ./.config
 ENV FORCE_UNSAFE_CONFIGURE 1
 RUN make
-
-FROM base AS dist
 RUN mkdir -p /opt/rs97tools/
 RUN mkdir -p /opt/rs97apps/
-COPY --from=builder /opt/buildroot-2018.02.9/output/host/* /opt/rs97tools/
+RUN ln -s /opt/buildroot-2018.02.9/output/host /opt/rs97tools/
 ENV PATH /opt/rs97tools/mipsel-buildroot-linux-uclibc/sysroot/usr/bin:$PATH
 ENV PATH /opt/rs97tools/bin:$PATH
 RUN ln -s /usr/lib/x86_64-linux-gnu/libmpfr.so.6 /usr/lib/x86_64-linux-gnu/libmpfr.so.4
